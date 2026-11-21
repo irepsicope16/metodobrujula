@@ -156,9 +156,19 @@ export default function RegisterProPage() {
                 {...register('aceptaTerminos')}
                 disabled={!cloudActive}
               />
-              Declaro que esta cuenta es de uso personal e intransferible, para mi práctica profesional
-              individual. Entiendo que compartir el acceso con otra persona puede implicar el corte del
-              servicio, sin reembolso.
+              <span>
+                Declaro que esta cuenta es de uso personal e intransferible, para mi práctica profesional
+                individual. Entiendo que compartir el acceso con otra persona puede implicar el corte del
+                servicio, sin reembolso. Acepto los{' '}
+                <Link to="/terminos" target="_blank" className="font-medium text-primary hover:underline">
+                  Términos y Condiciones
+                </Link>{' '}
+                y la{' '}
+                <Link to="/privacidad" target="_blank" className="font-medium text-primary hover:underline">
+                  Política de Privacidad
+                </Link>
+                .
+              </span>
             </label>
             <FieldError>{errors.aceptaTerminos?.message}</FieldError>
           </div>

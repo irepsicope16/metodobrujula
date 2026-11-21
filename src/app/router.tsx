@@ -11,6 +11,8 @@ const LoginPage = lazy(() => import('@/features/auth/LoginPage'))
 const RegisterProPage = lazy(() => import('@/features/auth/RegisterProPage'))
 const SelfRegisterConsultantPage = lazy(() => import('@/features/auth/SelfRegisterConsultantPage'))
 const ForgotPasswordPage = lazy(() => import('@/features/auth/ForgotPasswordPage'))
+const PrivacyPolicyPage = lazy(() => import('@/features/legal/PrivacyPolicyPage'))
+const TermsPage = lazy(() => import('@/features/legal/TermsPage'))
 
 const ProDashboard = lazy(() => import('@/features/dashboard/ProDashboard'))
 const ConsultantsPage = lazy(() => import('@/features/consultants/ConsultantsPage'))
@@ -57,6 +59,8 @@ export const router = createHashRouter([
   { path: '/registro', element: <Page><RegisterProPage /></Page> },
   { path: '/registro-consultante/:proId', element: <Page><SelfRegisterConsultantPage /></Page> },
   { path: '/olvide-contrasena', element: <Page><ForgotPasswordPage /></Page> },
+  { path: '/privacidad', element: <Page><PrivacyPolicyPage /></Page> },
+  { path: '/terminos', element: <Page><TermsPage /></Page> },
   {
     element: <RequireRole role="profesional" />,
     children: [

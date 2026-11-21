@@ -535,6 +535,14 @@ export default function LandingPage() {
           titular de la cuenta: personal e intransferible. Prohibida su reproducción, distribución o
           venta sin autorización expresa de la autora.
         </p>
+        <div className="mt-3 flex items-center justify-center gap-4 text-[12px]">
+          <Link to="/privacidad" className="text-muted-foreground hover:text-foreground">
+            Política de Privacidad
+          </Link>
+          <Link to="/terminos" className="text-muted-foreground hover:text-foreground">
+            Términos y Condiciones
+          </Link>
+        </div>
         <Link to="/" className="mt-3 inline-block text-[12px] text-muted-foreground hover:text-foreground">
           ← Volver al inicio
         </Link>

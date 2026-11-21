@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -21,6 +21,9 @@ const schema = z.object({
   email: z.string().email('Ingresá un email válido'),
   password: z.string().min(6, 'Mínimo 6 caracteres'),
   motivoConsulta: z.string().min(5, 'Contanos brevemente qué te trae a la consulta'),
+  aceptaPrivacidad: z.boolean().refine((v) => v === true, {
+    message: 'Tenés que aceptar esta condición para crear tu ficha',
+  }),
 })
 type FormData = z.infer<typeof schema>
 
@@ -84,6 +87,7 @@ export default function SelfRegisterConsultantPage() {
       email: '',
       password: '',
       motivoConsulta: '',
+      aceptaPrivacidad: false,
     },
   })
 
@@ -234,6 +238,27 @@ export default function SelfRegisterConsultantPage() {
                 <Label htmlFor="password">Elegí una contraseña</Label>
                 <PasswordInput id="password" autoComplete="new-password" {...register('password')} />
                 <FieldError>{errors.password?.message}</FieldError>
+              </div>
+              <div>
+                <label className="flex items-start gap-2 text-[12px] leading-relaxed text-muted-foreground">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-primary"
+                    {...register('aceptaPrivacidad')}
+                  />
+                  <span>
+                    Acepto los{' '}
+                    <Link to="/terminos" target="_blank" className="font-medium text-primary hover:underline">
+                      Términos y Condiciones
+                    </Link>{' '}
+                    y la{' '}
+                    <Link to="/privacidad" target="_blank" className="font-medium text-primary hover:underline">
+                      Política de Privacidad
+                    </Link>
+                    .
+                  </span>
+                </label>
+                <FieldError>{errors.aceptaPrivacidad?.message}</FieldError>
               </div>
               {serverError && (
                 <p className="rounded-lg bg-danger-soft px-3 py-2 text-[12.5px] text-danger">{serverError}</p>
